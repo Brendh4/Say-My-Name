@@ -1,0 +1,18 @@
+.jumboBackground {
+
+  height: calc(100vh - 25px);
+  background-image: url();
+  background-size: cover;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nameEntered {
+text-align: center
+}
+
+.title {
+  text-align: center
+}
