@@ -9,24 +9,24 @@
 </head>
 <body>
     <!--JUMBOTRON-->
- <div class="p-5 mb-4 bg-body-tertiary rounded-3 jumboBackground">
+ <div class="p-3 mb-2 bg-body-tertiary rounded-3 jumboBackground">
       <div class="container-fluid py-5 jumboCopy">
         <h1 class="display-5 fw-bold title">Say My Name</h1>
-        <p class="col-md-12 fs-4">Welcome to Say My Name – your go-to destination for discovering the pronunciation and gender of any name that piques your curiosity! Start now by typing in the name of your choice below and hitting the "Gender Reveal" button. ↓ </p>
+        <p class="col-md-10 mx-auto fs-5">Welcome to Say My Name – your go-to destination for discovering the pronunciation and gender of any name that piques your curiosity! Start now by typing in the name of your choice below and hitting the "Gender Reveal" button. ↓ </p>
       </div>
     </div>
 
     <!--USER INPUT-->
-    <div class = nameEntered>
-    <input id = "userInput">
+    <div class = "container text-center">
+    <input id = "userInput" class="form-control mb-8" placeholder="Enter Name">
     </div>
     <!------------------------------------------------------>
+    <div class="container text-center">
     <h1>Text-to-Speech Demo</h1>
     
     <label for="textInput">Enter Text:</label>
-    <textarea id="textInput" rows="4" cols="50"></textarea>
-    <button id="synthesizeButton">Synthesize</button>
-    
+    <textarea id="textInput" rows="4" cols="50" class="form-control mb-15"></textarea>
+    <button id="synthesizeButton" class="btn btn-primary mb-2">Synthesize</button>
     <audio id="audioPlayer" controls></audio>
 
     <script src="assets/script.js"></script>
