@@ -1,5 +1,4 @@
 .jumboBackground {
-
   height: calc(100vh - 25px);
   background-image: url();
   background-size: cover;
@@ -10,9 +9,14 @@
 }
 
 .nameEntered {
-text-align: center
+  text-align: center;
 }
 
 .title {
-  text-align: center
+  text-align: center;
+}
+
+.list-group-item {
+  background-color: rgb(186, 186, 193) !important;
+  margin: 2px;
 }
