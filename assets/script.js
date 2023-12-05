@@ -4,6 +4,11 @@ document.addEventListener("DOMContentLoaded", () => {
   const audioPlayer = document.getElementById("audioPlayer");
   const historyElement = document.getElementById("history");
 
+//  genderize.io API 
+// Modal Info
+
+
+
   // Retrieve the name history from local storage or initialize an empty array
   let nameHistory = new Set(
     JSON.parse(localStorage.getItem("nameHistory")) || []
