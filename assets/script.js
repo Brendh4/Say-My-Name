@@ -3,11 +3,9 @@ document.addEventListener("DOMContentLoaded", () => {
   const synthesizeButton = document.getElementById("synthesizeButton");
   const audioPlayer = document.getElementById("audioPlayer");
   const historyElement = document.getElementById("history");
-
-//  genderize.io API 
-// Modal Info
-
-
+  const revealGenderButton = document.getElementById("genderRevealButton");
+  const genderModal = document.getElementById("genderModal");
+  const predictedGenderElement = document.getElementById("predictedGender");
 
   // Retrieve the name history from local storage or initialize an empty array
   let nameHistory = new Set(
@@ -45,7 +43,7 @@ document.addEventListener("DOMContentLoaded", () => {
       updateHistory();
     }
 
-    // ... Rest of the code remains unchanged// Replace 'YOUR_API_KEY' with your actual Google Cloud API key.
+    // Replace 'YOUR_API_KEY' with your actual Google Cloud API key.
     const apiKey = "AIzaSyBgN4FyKfnT3BcbxvnmCjqgv-Msgbys3Yo";
     const apiUrl = `https://texttospeech.googleapis.com/v1/text:synthesize?key=${apiKey}`;
 
@@ -91,9 +89,31 @@ document.addEventListener("DOMContentLoaded", () => {
       });
   });
 
+  // Function to handle the "Gender Reveal" button click
+  revealGenderButton.addEventListener("click", () => {
+    const name = textInput.value.trim(); // Corrected ID to 'textInput'
+    if (name === "") {
+      alert("Please enter a name before revealing the gender.");
+      return;
+    }
+
+    // Call Genderize.io API to predict gender
+    fetch(`https://api.genderize.io/?name=${name}`)
+      .then((response) => response.json())
+      .then((data) => {
+        const genderPrediction = data.gender ? data.gender : 'Gender not found';
+        predictedGenderElement.textContent = `Predicted gender: ${genderPrediction}`;
+        // Show the modal after setting the prediction
+        $(genderModal).modal('show');
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+        alert('An error occurred while predicting gender. Please try again.');
+      });
+  });
+
   function updateHistory() {
     // Clear the history element
-
     historyElement.innerHTML = "<h3>Name History:</h3>";
 
     // Update the history element with the last 5 searched names
