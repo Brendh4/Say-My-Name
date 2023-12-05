@@ -1,7 +1,8 @@
+
 .jumbotron {
   border-radius: 10px;
-  border: 1px solid grey;
-  background-color: rgb(186, 186, 193);
+  border: 1px solid #FFC0CB;
+  background-color: #FFC0CB;
 }
 
 .nameEntered {
@@ -12,6 +13,10 @@
   text-align: center;
 }
 
+label {
+  font-size: 25px;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
 .list-group-item {
   background-color: rgb(186, 186, 193) !important;
   margin: 2px;
@@ -24,9 +29,13 @@
 }
 
 .text-area {
-  width: 40% !important;
-  height: 100px;
+  width: 30% !important;
+  height: 50px;
   border-radius: 10px;
+}
+
+#nameDiv {
+  padding-top: 20px;
 }
 
 .h3-heading {
@@ -41,4 +50,15 @@
 
 .audio {
   margin-left: 70px;
+}
+
+#synthesizeButton {
+border: #FFC0CB;
+background-color: #FFC0CB;
+border-radius: 20%;
+
+}
+#synthesizeButton:hover {
+background-color: #78ceeb;
+color: white; 
 }
