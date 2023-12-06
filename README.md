@@ -14,15 +14,15 @@ To use this project, simply open the deployed application page on your chosen br
 ## Credits
 
 Collaborator's GitHubs linked below:
-https://github.com/ahmadsaqib1
-https://github.com/beekras
-https://github.com/Brendh4
-https://github.com/JohnGreek23
+<br>https://github.com/ahmadsaqib1
+<br>https://github.com/beekras
+<br>https://github.com/Brendh4
+<br>https://github.com/JohnGreek23
 
 APIs used:
-JQuery: https://jquery.com/
-Genderize: https://genderize.io/
-Google Cloud text-to-speech: https://cloud.google.com/text-to-speech/
+<br>JQuery: https://jquery.com/
+<br>Genderize: https://genderize.io/
+<br>Google Cloud text-to-speech: https://cloud.google.com/text-to-speech/
 
 README template used: https://coding-boot-camp.github.io/full-stack/github/professional-readme-guide
 
