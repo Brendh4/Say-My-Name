@@ -1,59 +1,107 @@
 document.addEventListener("DOMContentLoaded", () => {
-    const textInput = document.getElementById("textInput");
-    const synthesizeButton = document.getElementById("synthesizeButton");
-    const audioPlayer = document.getElementById("audioPlayer");
+  const textInput = document.getElementById("textInput");
+  const synthesizeButton = document.getElementById("synthesizeButton");
+  const audioPlayer = document.getElementById("audioPlayer");
+  const historyElement = document.getElementById("history");
 
-    synthesizeButton.addEventListener("click", () => {
-        const textToSynthesize = textInput.value.trim();
+//  genderize.io API 
+// Modal Info
 
-        if (textToSynthesize === "") {
-            alert("Please enter text to synthesize.");
-            return;
-        }
 
-        // Replace 'YOUR_API_KEY' with your actual Google Cloud API key.
-        const apiKey = 'AIzaSyBgN4FyKfnT3BcbxvnmCjqgv-Msgbys3Yo';
-        const apiUrl = `https://texttospeech.googleapis.com/v1/text:synthesize?key=${apiKey}`;
 
-        const request = {
-            input: {
-                text: textToSynthesize
-            },
-            voice: {
-                languageCode: 'en-US',
-                name: 'en-US-Wavenet-D',
-                ssmlGender: 'FEMALE'
-            },
-            audioConfig: {
-                audioEncoding: 'MP3' // You can specify the desired audio format
-            }
-        };
+  // Retrieve the name history from local storage or initialize an empty array
+  let nameHistory = new Set(
+    JSON.parse(localStorage.getItem("nameHistory")) || []
+  );
 
-        fetch(apiUrl, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(request)
-        })
-        .then(response => response.json())
-        .then(data => {
-            const audioContentBase64 = data.audioContent;
+  // Update the history section on page load
+  updateHistory();
 
-            // Create a data URI from base64-encoded audio data
-            const audioDataUri = `data:audio/mp3;base64,${audioContentBase64}`;
+  synthesizeButton.addEventListener("click", () => {
+    const textToSynthesize = textInput.value.trim();
 
-            // Set the data URI as the source for the audio element
-            audioPlayer.src = audioDataUri;
+    if (textToSynthesize === "") {
+      alert("Please enter text to synthesize.");
+      return;
+    }
 
-            // Play the audio
-            audioPlayer.play().catch(error => {
-                console.error('Error playing audio:', error);
-            });
-        })
-        .catch(error => {
-            console.error('Error:', error);
-            alert('An error occurred. Please try again.');
+    // Add the name to the history set
+    if (!nameHistory.has(textToSynthesize)) {
+      nameHistory.add(textToSynthesize);
+
+      // Keep only the last 5 names in the history
+      if (nameHistory.size > 5) {
+        const firstElement = nameHistory.values().next().value;
+        nameHistory.delete(firstElement);
+      }
+
+      // Save the updated name history to local storage
+      localStorage.setItem(
+        "nameHistory",
+        JSON.stringify(Array.from(nameHistory))
+      );
+
+      // Update the history section on the page
+      updateHistory();
+    }
+
+    // ... Rest of the code remains unchanged// Replace 'YOUR_API_KEY' with your actual Google Cloud API key.
+    const apiKey = "AIzaSyBgN4FyKfnT3BcbxvnmCjqgv-Msgbys3Yo";
+    const apiUrl = `https://texttospeech.googleapis.com/v1/text:synthesize?key=${apiKey}`;
+
+    const request = {
+      input: {
+        text: textToSynthesize,
+      },
+      voice: {
+        languageCode: "en-US",
+        name: "en-US-Wavenet-D",
+        ssmlGender: "FEMALE",
+      },
+      audioConfig: {
+        audioEncoding: "MP3", // You can specify the desired audio format
+      },
+    };
+
+    fetch(apiUrl, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(request),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        const audioContentBase64 = data.audioContent;
+
+        // Create a data URI from base64-encoded audio data
+        const audioDataUri = `data:audio/mp3;base64,${audioContentBase64}`;
+
+        // Set the data URI as the source for the audio element
+        audioPlayer.src = audioDataUri;
+
+        // Play the audio
+        audioPlayer.play().catch((error) => {
+          console.error("Error playing audio:", error);
         });
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+        alert("An error occurred. Please try again.");
+      });
+  });
+
+  function updateHistory() {
+    // Clear the history element
+
+    historyElement.innerHTML = "<h3>Name History:</h3>";
+
+    // Update the history element with the last 5 searched names
+    Array.from(nameHistory).forEach((name, index) => {
+      const listItem = document.createElement("div");
+      listItem.className = "list-group-item";
+      listItem.textContent = `${index + 1}. ${name}`;
+      historyElement.appendChild(listItem);
     });
+  }
 });
