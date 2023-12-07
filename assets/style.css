@@ -62,3 +62,8 @@ border-radius: 20%;
 background-color: #78ceeb;
 color: white; 
 }
+
+.list-group-item.highlight {
+  background-color: #ffcccb !important;
+  transition: background-color 0.5s;
+}

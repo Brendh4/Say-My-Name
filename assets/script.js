@@ -122,6 +122,19 @@ document.addEventListener("DOMContentLoaded", () => {
       const listItem = document.createElement("div");
       listItem.className = "list-group-item";
       listItem.textContent = `${index + 1}. ${name}`;
+
+      // Add a click event listener to select and insert the name into the input field
+      listItem.addEventListener("click", () => {
+        nameInput.value = name;
+        // Apply the highlight class
+      listItem.classList.add("highlight");
+
+      // Remove the highlight class after 500 milliseconds (0.5 seconds)
+      setTimeout(() => {
+        listItem.classList.remove("highlight");
+      }, 500);
+    });
+
       nameHistory.appendChild(listItem);
     });
   }
