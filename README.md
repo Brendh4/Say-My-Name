@@ -9,7 +9,7 @@ Link to deployed application: https://brendh4.github.io/Say-My-Name
 
 To use this project, simply open the deployed application page on your chosen browser, type in a name and use the buttons to hear the pronounciation and see the gender information.
 
-![Deployed webpage screenshot](screenshot.PNG)
+![Deployed webpage screenshot](/assets/screenshot.PNG)
 
 ## Credits
 
